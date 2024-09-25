@@ -1,0 +1,44 @@
+## IDF Component Manager Manifest File
+dependencies:
+  georgik/lua: "^5.5.0"
+  # espressif/freetype: "^2.13.0~3"
+  # espressif/esp-box: "^3.1.0~1"
+  joltwallet/littlefs: "==1.14.8"
+  georgik/sdl: 
+    version: "^3.1.2~3"
+    rules:
+    - if: "${BUILD_BOARD} != lilygo-ttgo-t5-47"
+  georgik/sdl: 
+    version: board/lilygo-ttgo-t5-47
+    git: https://github.com/georgik/esp-idf-component-SDL.git
+    rules:
+    - if: "${BUILD_BOARD} == lilygo-ttgo-t5-47"
+  georgik/sdl_image: "^3.0.0~1"
+#    git: https://github.com/georgik/esp-idf-component-SDL_image.git
+  georgik/sdl_ttf: "^3.0.0~2"
+#    git: https://github.com/georgik/esp-idf-component-SDL_ttf.git
+
+  ## Required IDF version
+  idf:
+    version: ">=5.0.0"
+
+  # BSP - information reguired for SDL
+  espressif/esp-box-3:
+    version: "^1.2.0"
+    rules:
+    - if: "${BUILD_BOARD} == esp-box-3"
+  espressif/esp-box:
+    version: "3.1.0"
+    rules:
+    - if: "${BUILD_BOARD} == esp-box"
+  espressif/m5stack_core_s3:
+    version: "1.1.1"
+    rules:
+    - if: "${BUILD_BOARD} == m5stack_core_s3"
+  espressif/esp32_p4_function_ev_board_noglib:
+    version: "3.0.1"
+    rules:
+    - if: "${BUILD_BOARD} == esp32_p4_function_ev_board_noglib"
+  georgik/lilygo-ttgo-t5-47:
+    rules:
+    - if: "${BUILD_BOARD} == lilygo-ttgo-t5-47"

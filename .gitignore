@@ -1,0 +1,6 @@
+
+sdkconfig
+managed_components/
+nvs.cvs
+build.*/
+
