@@ -1,6 +1,6 @@
 
 sdkconfig
 managed_components/
-nvs.cvs
+nvs.csv
 build.*/
 

@@ -52,7 +52,7 @@ jobs:
           target: ${{ env.TARGET }}
           path: '.'
           command: |
-            cp nvs-template.cvs nvs.cvs &&
+            cp nvs-template.csv nvs.csv &&
             idf.py @boards/${{ matrix.board }}.cfg build &&
             cd build.${{ matrix.board }} &&
             esptool.py --chip ${{ env.TARGET }} merge_bin -o ${{ github.event.inputs.prefix }}-${{ matrix.board }}.bin "@flash_args"

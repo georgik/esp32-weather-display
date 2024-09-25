@@ -10,10 +10,10 @@ Display information from [Open Weather Map](https://www.openweathermap.org) on t
 
 ## Configuration
 
-Copy `nvs-template.cvs` to `nvs.cvs`.
+Copy `nvs-template.csv` to `nvs.csv`.
 
 ```shell
-cp nvs-template.cvs nvs.cvs
+cp nvs-template.csv nvs.csv
 ```
 
 Update information about Wi-Fi network and Open Weather Map API key.
