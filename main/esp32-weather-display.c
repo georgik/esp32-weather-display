@@ -34,6 +34,7 @@
 #include "filesystem.h"
 
 #include "graphics.h"
+
 #include "weather.h"
 
 static const char *TAG = "WeatherApp";
@@ -488,6 +489,31 @@ static void parse_weather_data(const char *json) {
         if (humidity != NULL) current_weather.humidity = humidity->valueint;
     }
 
+    // Parse sunrise and sunset
+    cJSON *sys = cJSON_GetObjectItem(root, "sys");
+    if (sys != NULL) {
+        cJSON *sunrise = cJSON_GetObjectItem(sys, "sunrise");
+        cJSON *sunset = cJSON_GetObjectItem(sys, "sunset");
+
+        if (sunrise != NULL) {
+            current_weather.sunrise = (time_t)sunrise->valueint; // Store as time_t
+            struct tm *sunrise_tm = localtime(&current_weather.sunrise);
+            if (sunrise_tm != NULL) {
+                current_weather.sunrise_hour = sunrise_tm->tm_hour;
+                current_weather.sunrise_minute = sunrise_tm->tm_min;
+            }
+        }
+
+        if (sunset != NULL) {
+            current_weather.sunset = (time_t)sunset->valueint; // Store as time_t
+            struct tm *sunset_tm = localtime(&current_weather.sunset);
+            if (sunset_tm != NULL) {
+                current_weather.sunset_hour = sunset_tm->tm_hour;
+                current_weather.sunset_minute = sunset_tm->tm_min;
+            }
+        }
+    }
+
     cJSON_Delete(root);
 
     ESP_LOGI(TAG, "Parsed weather data:");
@@ -496,7 +522,10 @@ static void parse_weather_data(const char *json) {
     ESP_LOGI(TAG, "Temperature: %.2f", current_weather.temperature);
     ESP_LOGI(TAG, "Pressure: %d", current_weather.pressure);
     ESP_LOGI(TAG, "Humidity: %d", current_weather.humidity);
+    ESP_LOGI(TAG, "Sunrise: %02d:%02d", current_weather.sunrise_hour, current_weather.sunrise_minute);
+    ESP_LOGI(TAG, "Sunset: %02d:%02d", current_weather.sunset_hour, current_weather.sunset_minute);
 }
+
 
 // Initialize SDL, create window and renderer, load font
 static void initialize_sdl() {

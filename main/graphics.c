@@ -107,6 +107,27 @@ void render_weather_data(SDL_Renderer *renderer, TTF_Font *font) {
     SDL_DestroySurface(desc_surface);
     SDL_DestroyTexture(desc_texture);
 
+        // Render sunrise time
+    char sunrise_str[64];
+    snprintf(sunrise_str, sizeof(sunrise_str), "Sunrise: %02d:%02d", current_weather.sunrise_hour, current_weather.sunrise_minute);
+    SDL_Surface *sunrise_surface = TTF_RenderText_Solid(font, sunrise_str, textColor);
+    SDL_Texture *sunrise_texture = SDL_CreateTextureFromSurface(renderer, sunrise_surface);
+    SDL_FRect sunrise_rect = {20.0f, 180.0f, (float)sunrise_surface->w, (float)sunrise_surface->h};
+    SDL_RenderTexture(renderer, sunrise_texture, NULL, &sunrise_rect);
+    SDL_DestroySurface(sunrise_surface);
+    SDL_DestroyTexture(sunrise_texture);
+
+    // Render sunset time
+    char sunset_str[64];
+    snprintf(sunset_str, sizeof(sunset_str), "Sunset: %02d:%02d", current_weather.sunset_hour, current_weather.sunset_minute);
+    SDL_Surface *sunset_surface = TTF_RenderText_Solid(font, sunset_str, textColor);
+    SDL_Texture *sunset_texture = SDL_CreateTextureFromSurface(renderer, sunset_surface);
+    SDL_FRect sunset_rect = {20.0f, 220.0f, (float)sunset_surface->w, (float)sunset_surface->h};
+    SDL_RenderTexture(renderer, sunset_texture, NULL, &sunset_rect);
+    SDL_DestroySurface(sunset_surface);
+    SDL_DestroyTexture(sunset_texture);
+
+
     // Load and render weather icon
     // char icon_path[64];
     // snprintf(icon_path, sizeof(icon_path), "/spiffs/icons/%s.png", current_weather.icon);
