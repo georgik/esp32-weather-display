@@ -3,6 +3,7 @@ idf_component_register(
         "text.c"
         "filesystem.c"
         "graphics.c"
+        "weather.c"
         "esp32-weather-display.c"
     INCLUDE_DIRS
         "."
