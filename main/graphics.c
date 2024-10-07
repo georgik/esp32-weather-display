@@ -76,7 +76,7 @@ void render_weather_data(SDL_Renderer *renderer, TTF_Font *font) {
 
     ESP_LOGI(TAG, "Sending SDL data ");
     // Render temperature
-    SDL_Surface *temp_surface = TTF_RenderText_Solid(font, temp_str, textColor);
+    SDL_Surface *temp_surface = TTF_RenderText_Blended(font, temp_str, 0, textColor);
     SDL_Texture *temp_texture = SDL_CreateTextureFromSurface(renderer, temp_surface);
     SDL_FRect temp_rect = {20.0f, 20.0f, (float)temp_surface->w, (float)temp_surface->h};
     SDL_RenderTexture(renderer, temp_texture, NULL, &temp_rect);
@@ -84,7 +84,7 @@ void render_weather_data(SDL_Renderer *renderer, TTF_Font *font) {
     SDL_DestroyTexture(temp_texture);
 
     // Render pressure
-    SDL_Surface *pressure_surface = TTF_RenderText_Solid(font, pressure_str, textColor);
+    SDL_Surface *pressure_surface = TTF_RenderText_Blended(font, pressure_str, 0, textColor);
     SDL_Texture *pressure_texture = SDL_CreateTextureFromSurface(renderer, pressure_surface);
     SDL_FRect pressure_rect = {20.0f, 60.0f, (float)pressure_surface->w, (float)pressure_surface->h};
     SDL_RenderTexture(renderer, pressure_texture, NULL, &pressure_rect);
@@ -92,7 +92,7 @@ void render_weather_data(SDL_Renderer *renderer, TTF_Font *font) {
     SDL_DestroyTexture(pressure_texture);
 
     // Render humidity
-    SDL_Surface *humidity_surface = TTF_RenderText_Solid(font, humidity_str, textColor);
+    SDL_Surface *humidity_surface = TTF_RenderText_Blended(font, humidity_str, 0, textColor);
     SDL_Texture *humidity_texture = SDL_CreateTextureFromSurface(renderer, humidity_surface);
     SDL_FRect humidity_rect = {20.0f, 100.0f, (float)humidity_surface->w, (float)humidity_surface->h};
     SDL_RenderTexture(renderer, humidity_texture, NULL, &humidity_rect);
@@ -100,7 +100,7 @@ void render_weather_data(SDL_Renderer *renderer, TTF_Font *font) {
     SDL_DestroyTexture(humidity_texture);
 
     // Render description
-    SDL_Surface *desc_surface = TTF_RenderText_Solid(font, current_weather.description, textColor);
+    SDL_Surface *desc_surface = TTF_RenderText_Blended(font, current_weather.description, 0, textColor);
     SDL_Texture *desc_texture = SDL_CreateTextureFromSurface(renderer, desc_surface);
     SDL_FRect desc_rect = {20.0f, 140.0f, (float)desc_surface->w, (float)desc_surface->h};
     SDL_RenderTexture(renderer, desc_texture, NULL, &desc_rect);
@@ -110,7 +110,7 @@ void render_weather_data(SDL_Renderer *renderer, TTF_Font *font) {
         // Render sunrise time
     char sunrise_str[64];
     snprintf(sunrise_str, sizeof(sunrise_str), "Sunrise: %02d:%02d", current_weather.sunrise_hour, current_weather.sunrise_minute);
-    SDL_Surface *sunrise_surface = TTF_RenderText_Solid(font, sunrise_str, textColor);
+    SDL_Surface *sunrise_surface = TTF_RenderText_Blended(font, sunrise_str, 0, textColor);
     SDL_Texture *sunrise_texture = SDL_CreateTextureFromSurface(renderer, sunrise_surface);
     SDL_FRect sunrise_rect = {20.0f, 180.0f, (float)sunrise_surface->w, (float)sunrise_surface->h};
     SDL_RenderTexture(renderer, sunrise_texture, NULL, &sunrise_rect);
@@ -120,7 +120,7 @@ void render_weather_data(SDL_Renderer *renderer, TTF_Font *font) {
     // Render sunset time
     char sunset_str[64];
     snprintf(sunset_str, sizeof(sunset_str), "Sunset: %02d:%02d", current_weather.sunset_hour, current_weather.sunset_minute);
-    SDL_Surface *sunset_surface = TTF_RenderText_Solid(font, sunset_str, textColor);
+    SDL_Surface *sunset_surface = TTF_RenderText_Blended(font, sunset_str, 0, textColor);
     SDL_Texture *sunset_texture = SDL_CreateTextureFromSurface(renderer, sunset_surface);
     SDL_FRect sunset_rect = {20.0f, 220.0f, (float)sunset_surface->w, (float)sunset_surface->h};
     SDL_RenderTexture(renderer, sunset_texture, NULL, &sunset_rect);

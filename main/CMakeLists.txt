@@ -15,6 +15,7 @@ idf_component_register(
         espressif__esp_lcd_touch
         esp_event
         esp_netif
+        georgik__sdl
 )
 
 nvs_create_partition_image(nvs ../nvs.csv FLASH_IN_PROJECT)

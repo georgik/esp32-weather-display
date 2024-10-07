@@ -1,6 +1,7 @@
-// sdl-test.c
+// esp32-weather-display
 
 #include <stdio.h>
+#include <pthread.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -24,7 +25,7 @@
 // SDL includes
 #include "SDL3/SDL.h"
 #include "SDL3_ttf/SDL_ttf.h"
-#include "SDL3_image/SDL_image.h"
+// #include "SDL3_image/SDL_image.h"
 
 #include "bsp/esp-bsp.h"
 
@@ -529,7 +530,7 @@ static void parse_weather_data(const char *json) {
 
 // Initialize SDL, create window and renderer, load font
 static void initialize_sdl() {
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0) {
+    if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS)) {
         ESP_LOGE(TAG, "Unable to initialize SDL: %s", SDL_GetError());
         return;
     }
@@ -547,7 +548,7 @@ static void initialize_sdl() {
         return;
     }
 
-    if (TTF_Init() == -1) {
+    if (!TTF_Init()) {
         ESP_LOGE(TAG, "Failed to initialize TTF: %s", SDL_GetError());
         return;
     }
@@ -560,9 +561,8 @@ static void initialize_sdl() {
 }
 
 
-// Main application entry point
-void app_main(void)
-{
+// Application
+void* sdl_thread(void* args) {
     // Initialize NVS (Non-Volatile Storage)
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES ||
@@ -607,4 +607,21 @@ void app_main(void)
         vTaskDelay(10000 / portTICK_PERIOD_MS);
     }
     // esp_restart();
+}
+
+
+void app_main(void) {
+    pthread_t sdl_pthread;
+
+    pthread_attr_t attr;
+    pthread_attr_init(&attr);
+    pthread_attr_setstacksize(&attr, 8192);  // Set the stack size for the thread
+
+    int ret = pthread_create(&sdl_pthread, &attr, sdl_thread, NULL);
+    if (ret != 0) {
+        printf("Failed to create SDL thread: %d\n", ret);
+        return;
+    }
+
+    pthread_detach(sdl_pthread);
 }
