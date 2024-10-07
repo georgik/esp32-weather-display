@@ -35,10 +35,16 @@ dependencies:
     version: "==1.1.1~1"
     rules:
     - if: "${BUILD_BOARD} == m5stack_core_s3_noglib"
+
   espressif/esp32_p4_function_ev_board_noglib:
     version: "3.0.1"
     rules:
     - if: "${BUILD_BOARD} == esp32_p4_function_ev_board_noglib"
+  espressif/esp_wifi_remote:
+    version: "0.4.0"
+    rules:
+    - if: "${BUILD_BOARD} == esp32_p4_function_ev_board_noglib"
+
   georgik/lilygo-ttgo-t5-47:
     rules:
     - if: "${BUILD_BOARD} == lilygo-ttgo-t5-47"

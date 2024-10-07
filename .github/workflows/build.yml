@@ -27,7 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        board: [esp-box-3, esp-box, m5stack_core_s3, esp32_p4_function_ev_board, lilygo-ttgo-t5-47]
+        # Temporarily disable P4, because the implementation should use hosted WiFi accessible via onboard C6
+        # board: [esp-box-3, esp-box, m5stack_core_s3, esp32_p4_function_ev_board, lilygo-ttgo-t5-47]
+        board: [esp-box-3, esp-box, m5stack_core_s3, lilygo-ttgo-t5-47]
       fail-fast: false
 
     steps:
