@@ -56,7 +56,11 @@ idf.py @boards/m5stack_core_s3.cfg build
 
 ## Build for P4
 
-Update of on-board ESP32-C6 firmware for Wi-Fi connectivity:
+Update of on-board ESP32-C6 firmware for Wi-Fi connectivity.
+
+Follow official instructions: https://github.com/espressif/esp-hosted/blob/feature/esp_as_mcu_host/docs/esp32_p4_function_ev_board.md#52-using-esp-prog
+
+Steps used in this version:
 
 ```shell
 idf.py -C managed_components/espressif__esp_hosted/slave/ -B build_slave set-target esp32c6
