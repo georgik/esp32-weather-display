@@ -24,7 +24,6 @@ Update information about Wi-Fi network and Open Weather Map API key.
 git clone git@github.com:georgik/esp32-weather-display.git
 cd weather-display
 
-idf.py @boards/lilygo-ttgo-t5-47.cfg set-target esp32
 idf.py @boards/lilygo-ttgo-t5-47.cfg build
 ```
 
@@ -32,32 +31,27 @@ idf.py @boards/lilygo-ttgo-t5-47.cfg build
 
 - ESP32-S3-BOX-3
 ```shell
-idf.py @boards/lilygo-ttgo-t5-47.cfg set-target esp32s3
-idf.py @boards/esp-box-3.cfg reconfigure
+idf.py @boards/esp-box-3.cfg build
 ```
 
 - ESP32-S3-BOX (prior Dec. 2023)
 ```shell
-idf.py @boards/lilygo-ttgo-t5-47.cfg set-target esp32s3
-idf.py @boards/esp-box.cfg reconfigure
+idf.py @boards/lilygo-ttgo-t5-47.cfg build
 ```
 
 - ESP32-P4
 ```shell
-idf.py @boards/lilygo-ttgo-t5-47.cfg set-target esp32p4
-idf.py @boards/esp32_p4_function_ev_board.cfg reconfigure
+idf.py @boards/esp32_p4_function_ev_board.cfg build
 ```
 
 - LilyGo TTGO T5 4.7 with ESP32
 ```shell
-idf.py @boards/lilygo-ttgo-t5-47.cfg set-target esp32
 idf.py @boards/lilygo-ttgo-t5-47.cfg build
 ```
 
 - M5Stack-CoreS3
 ```shell
-idf.py @boards/lilygo-ttgo-t5-47.cfg set-target esp32s3
-idf.py @boards/m5stack_core_s3.cfg reconfigure
+idf.py @boards/m5stack_core_s3.cfg build
 ```
 
 
