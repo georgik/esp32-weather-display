@@ -54,6 +54,17 @@ idf.py @boards/lilygo-ttgo-t5-47.cfg build
 idf.py @boards/m5stack_core_s3.cfg build
 ```
 
+## Build for P4
+
+Update of on-board ESP32-C6 firmware for Wi-Fi connectivity:
+
+```shell
+idf.py -C managed_components/espressif__esp_hosted/slave/ -B build_slave set-target esp32c6
+idf.py -C managed_components/espressif__esp_hosted/slave/ -B build_slave build flash monitor
+```
+
+Connection via ESP-PROG. Connect all 6 wires in the same order. Do not switch RX/TX. Swich whole board to Boot mode: Hold boot, press Reset.
+The reset applies to both chips.
 
 ## Credits
 
