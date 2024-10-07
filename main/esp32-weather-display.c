@@ -16,6 +16,7 @@
 #include "esp_sntp.h"
 #include "esp_http_client.h"
 #include "cJSON.h"
+#include "esp_wifi_remote.h"
 
 // FreeRTOS includes
 #include "freertos/FreeRTOS.h"
@@ -474,8 +475,8 @@ static void parse_weather_data(const char *json) {
         cJSON *icon = cJSON_GetObjectItem(weather, "icon");
 
         if (description != NULL && icon != NULL) {
-            strncpy(current_weather.description, description->valuestring, sizeof(current_weather.description));
-            strncpy(current_weather.icon, icon->valuestring, sizeof(current_weather.icon));
+            strlcpy(current_weather.description, description->valuestring, sizeof(current_weather.description));
+            strlcpy(current_weather.icon, icon->valuestring, sizeof(current_weather.icon));
         }
     }
 

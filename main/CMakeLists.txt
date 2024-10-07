@@ -16,6 +16,7 @@ idf_component_register(
         esp_event
         esp_netif
         georgik__sdl
+        esp_wifi_remote
 )
 
 nvs_create_partition_image(nvs ../nvs.csv FLASH_IN_PROJECT)
